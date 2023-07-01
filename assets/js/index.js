@@ -151,21 +151,37 @@ const heroBanner = function ({ results: movieList }) {
 const addHeroSlide = function () {
     const sliderItems = document.querySelectorAll('[slider-item]');
     const sliderControls = document.querySelectorAll('[slider-control]');
+
     let lastSliderItem = sliderItems[0];
     let lastSliderControl = sliderControls[0];
+    let currentSliderIndex = 0;
+
     lastSliderItem.classList.add('active');
     lastSliderControl.classList.add('active');
 
     const sliderStart = function () {
-        lastSliderItem.classList.remove('active');
-        lastSliderControl.classList.remove('active');
+        const controlIndex = Number(this.getAttribute('slider-control'));
 
-        // 'this' == slider-control
-        sliderItems[Number(this.getAttribute('slider-control'))].classList.add('active');
-        this.classList.add('active');
-        lastSliderItem = sliderItems[Number(this.getAttribute('slider-control'))];
-        lastSliderControl = this;
+        if (currentSliderIndex !== controlIndex) {
+            lastSliderItem.classList.remove('active');
+            lastSliderControl.classList.remove('active');
+
+            // Here, 'this' is slider-control
+            sliderItems[controlIndex].classList.add('active');
+            this.classList.add('active');
+            lastSliderItem = sliderItems[controlIndex];
+            lastSliderControl = this;
+            currentSliderIndex = controlIndex;
+        }
     }
+
+    const slideToNext = function () {
+        const nextIndex = (currentSliderIndex + 1) % sliderItems.length;
+        sliderControls[nextIndex].click();
+    }
+
+    // Automatically sliding in every 7 seconds
+    setInterval(slideToNext, 7000);
 
     addEventOnElements(sliderControls, 'click', sliderStart);
 }

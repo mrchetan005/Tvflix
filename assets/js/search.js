@@ -41,7 +41,7 @@ export function search() {
                     searchResultModal.querySelector('.grid-list').appendChild(movieCard);
                 }
             });
-        }, 5000);
+        }, 500);
     });
 }
 

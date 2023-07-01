@@ -23,8 +23,7 @@ export function search() {
 
         searchWrapper.classList.add('searching');
         if (searchTimeout) clearTimeout(searchTimeout);
-        setTimeout(() => {
-            console.log(searchField.value);
+        searchTimeout = setTimeout(() => {
             fetchDataFromServer(`https://api.themoviedb.org/3/search/movie?page=1&api_key=${api_key}&include_adult=false&query=${searchField.value.trim()}`, function ({ results: movieList }) {
                 searchWrapper.classList.remove('searching');
                 searchResultModal.classList.add('active');

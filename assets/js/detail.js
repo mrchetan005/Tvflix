@@ -66,7 +66,7 @@ fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api
     movieDetail.innerHTML = `
         <div
             class="backdrop-image"
-            style="background-image: url('${imageBaseUrl}${"w1280" || "original"}${backdrop_path || poster_path}');"
+            style="background-image: url('${imageBaseUrl}w1280${backdrop_path || poster_path}');"
         ></div>
         <figure class="poster-box movie-poster">
             <img
@@ -117,11 +117,12 @@ fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api
         </div>
     `;
 
+
     for (const { key, name } of filterVideos(videos)) {
         const videoCard = document.createElement('div');
         videoCard.className = 'video-card';
         videoCard.innerHTML = `
-            <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="imgcover" loading="lazy"></iframe>
+            <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>
         `;
         movieDetail.querySelector('.slider-inner').appendChild(videoCard);
     }
@@ -155,3 +156,4 @@ const addSuggestedMovies = function ({ results: movieList }, title) {
 }
 
 search();
+

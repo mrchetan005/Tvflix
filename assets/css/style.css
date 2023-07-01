@@ -811,10 +811,10 @@ body {
 		height: calc(100vh - 104px);
 		border-top-left-radius: var(--radius-16);
 	}
-	.banner-content{
+	.banner-content {
 		left: 100px;
 	}
-	.search-modal{
+	.search-modal {
 		top: 104px;
 		padding: 60px;
 	}
